@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}<script>apiToken = '{{ app.user.apiToken }}';</script>{% endblock %} 
+{% block title %}Account{% endblock %}
+
+{% block body %}
+<div class="row px-3 pt-2">
+    <div class="col"><h2 class="p-0 m-0">Welcome to the campaign!</h2></div>
+    <div class="col text-end pt-2">
+        <select name="lang" class="form-select">
+            {% for lang in langs %}
+                <option value="{{ lang.name }}">{{ lang.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col text-end pt-2">
+     {% if app.user %}
+        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+    </div>
+</div>
+<hr>
+
+<div class="text-center">
+    <button class="get-prize-button btn btn-lg btn-primary">Get a prize!</button><br>
+    <div class="message text-center mt-3"></div>
+    <button class="check-prize-button btn btn-sm btn-light mt-2">Check again</button>
+</div>
+
+{% endblock %}
